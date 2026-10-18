@@ -1,0 +1,914 @@
+<p>&lt;!DOCTYPE html&gt;<br>&lt;html lang="vi"&gt;<br>&lt;head&gt;<br>&lt;meta charset="UTF-8"&gt;<br>&lt;meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"&gt;<br>&lt;meta name="theme-color" content="#0d0e1a"&gt;<br>&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;<br>&lt;title&gt;Sổ Văn Nghệ&lt;/title&gt;<br>&lt;style&gt;<br>
+*{
+box-sizing:border-box;-webkit-tap-highlight-color:transparent
+}
+<br>body
+{
+<br>&nbsp;margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;<br>&nbsp;background:radial-gradient(1200px 600px at 50% -10%,#241a3d 0%,#0d0e1a 55%);<br>&nbsp;color:#e8e8f0;min-height:100vh;font-size:15px;<br>
+}
+<br>.hidden
+{
+display:none!important
+}
+<br>button
+{
+font-family:inherit;cursor:pointer
+}
+</p>
+<p>/* ---------- LOCK ---------- */<br>.lock
+{
+min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px
+}
+<br>.lockBox
+{
+width:100%;max-width:340px;text-align:center
+}
+<br>.lockBox h1
+{
+font-size:24px;margin:0 0 6px;letter-spacing:-.5px
+}
+<br>.lockBox p
+{
+color:#8b8ba7;font-size:14px;margin:0 0 22px
+}
+<br>input[type=password],input[type=text],input[type=date]
+{
+<br>&nbsp;width:100%;padding:13px 14px;border-radius:12px;border:1px solid #2c2e4a;<br>&nbsp;background:#15162a;color:#e8e8f0;font-size:15px;font-family:inherit;outline:none;<br>&nbsp;transition:.15s;<br>
+}
+<br>input:focus
+{
+border-color:#a855f7;box-shadow:0 0 0 3px #a855f722
+}
+<br>.lockBox input
+{
+margin-bottom:10px;text-align:center;letter-spacing:2px
+}
+<br>.lockBox button
+{
+width:100%;padding:14px;border:none;border-radius:12px;<br>&nbsp;background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff;font-weight:700;font-size:15px;margin-top:4px
+}
+<br>.err
+{
+color:#f87171;font-size:13px;margin-top:12px;min-height:18px
+}
+</p>
+<p>/* ---------- APP ---------- */<br>header
+{
+<br>&nbsp;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;<br>&nbsp;padding:14px 16px 10px;background:rgba(13,14,26,.85);backdrop-filter:blur(12px);<br>
+}
+<br>.brand
+{
+font-weight:800;font-size:17px;letter-spacing:-.3px
+}
+<br>.ghost
+{
+background:#1c1d33;border:1px solid #2c2e4a;color:#b8b8d0;border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600
+}
+</p>
+<p>.tabs
+{
+position:sticky;top:52px;z-index:19;display:flex;gap:6px;padding:0 12px 10px;<br>&nbsp;background:rgba(13,14,26,.85);backdrop-filter:blur(12px);overflow-x:auto;scrollbar-width:none
+}
+<br>.tabs::-webkit-scrollbar
+{
+display:none
+}
+<br>.tabs button
+{
+<br>&nbsp;flex:1;min-width:max-content;padding:9px 12px;border-radius:10px;border:1px solid transparent;<br>&nbsp;background:transparent;color:#8b8ba7;font-size:13.5px;font-weight:700;transition:.15s;white-space:nowrap<br>
+}
+<br>.tabs button.on
+{
+background:#1e1f36;color:#fff;border-color:#32355a
+}
+</p>
+<p>main
+{
+padding:4px 12px 60px;max-width:720px;margin:0 auto
+}
+</p>
+<p>.card
+{
+background:#15162a;border:1px solid #24263f;border-radius:16px;padding:14px;margin-bottom:12px
+}
+<br>.cardTitle
+{
+font-size:13px;font-weight:800;color:#8b8ba7;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px
+}
+<br>.row
+{
+display:flex;gap:8px
+}
+<br>.row input
+{
+flex:1
+}
+<br>.btn
+{
+background:linear-gradient(135deg,#a855f7,#ec4899);border:none;color:#fff;<br>&nbsp;font-weight:700;padding:13px 18px;border-radius:12px;font-size:14px;white-space:nowrap
+}
+<br>.btn.gray
+{
+background:#24263f;color:#c8c8e0
+}
+</p>
+<p>.memberRow
+{
+display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #20223a
+}
+<br>.memberRow:last-child
+{
+border-bottom:none
+}
+<br>.memberRow .idx
+{
+width:22px;height:22px;border-radius:7px;background:#24263f;color:#8b8ba7;<br>&nbsp;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex:none
+}
+<br>.memberRow .nm
+{
+flex:1;font-weight:600;font-size:14.5px;cursor:pointer
+}
+<br>.xbtn
+{
+background:#2a1c26;border:none;color:#f87171;width:30px;height:30px;border-radius:9px;font-size:15px;line-height:1;flex:none
+}
+</p>
+<p>/* sessions */<br>.sessRow
+{
+display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #20223a
+}
+<br>.sessRow:last-child
+{
+border-bottom:none
+}
+<br>.sessRow .info
+{
+flex:1;min-width:0
+}
+<br>.sessRow .t
+{
+font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+<br>.sessRow .d
+{
+font-size:12px;color:#8b8ba7;margin-top:3px
+}
+<br>.pill
+{
+font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:8px;background:#24263f;color:#9a9ab8;flex:none
+}
+<br>.pill.done
+{
+background:#16a34a22;color:#4ade80
+}
+</p>
+<p>/* attendance */<br>.backBtn
+{
+background:#1c1d33;border:1px solid #2c2e4a;color:#b8b8d0;border-radius:10px;<br>&nbsp;padding:8px 13px;font-size:13px;font-weight:700;margin-bottom:12px
+}
+<br>.attHead
+{
+background:#15162a;border:1px solid #24263f;border-radius:16px;padding:14px;margin-bottom:12px
+}
+<br>.attHead h2
+{
+margin:0 0 5px;font-size:17px;letter-spacing:-.3px
+}
+<br>.attHead .sub
+{
+font-size:13px;color:#8b8ba7
+}
+</p>
+<p>.attRow
+{
+background:#15162a;border:1px solid #24263f;border-radius:16px;padding:13px;margin-bottom:10px
+}
+<br>.attName
+{
+font-weight:700;font-size:14.5px;margin-bottom:10px
+}
+<br>.attBtns
+{
+display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:11px
+}
+<br>.chip
+{
+padding:9px 4px;border-radius:11px;border:1px solid #2c2e4a;background:#191a2e;<br>&nbsp;color:#8b8ba7;font-size:11.5px;font-weight:800;transition:.15s;text-align:center
+}
+<br>.chip.active.present
+{
+background:#16a34a22;border-color:#22c55e;color:#4ade80
+}
+<br>.chip.active.late
+{
+background:#f59e0b22;border-color:#f59e0b;color:#fbbf24
+}
+<br>.chip.active.absent
+{
+background:#ef444422;border-color:#ef4444;color:#f87171
+}
+<br>.chip.active.excused
+{
+background:#3b82f622;border-color:#3b82f6;color:#60a5fa
+}
+</p>
+<p>.attBottom
+{
+display:flex;align-items:center;gap:10px
+}
+<br>.stars
+{
+display:flex;gap:1px;flex:none
+}
+<br>.star
+{
+font-size:21px;color:#33365c;cursor:pointer;line-height:1;transition:.1s;user-select:none
+}
+<br>.star.filled
+{
+color:#fbbf24
+}
+<br>.noteInput
+{
+flex:1;min-width:0;padding:9px 11px!important;font-size:13px!important;border-radius:10px!important
+}
+</p>
+<p>/* stats */<br>.statCard
+{
+background:#15162a;border:1px solid #24263f;border-radius:16px;padding:13px;margin-bottom:10px
+}
+<br>.statTop
+{
+display:flex;align-items:center;gap:10px;margin-bottom:10px
+}
+<br>.rank
+{
+width:26px;height:26px;border-radius:9px;display:flex;align-items:center;justify-content:center;<br>&nbsp;font-size:12px;font-weight:900;background:#24263f;color:#8b8ba7;flex:none
+}
+<br>.rank.g1
+{
+background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3a2a00
+}
+<br>.rank.g2
+{
+background:#cbd5e1;color:#2b3340
+}
+<br>.rank.g3
+{
+background:#d97706;color:#2a1600
+}
+<br>.statTop .nm
+{
+flex:1;font-weight:700;font-size:14.5px
+}
+<br>.rate
+{
+font-weight:900;font-size:15px;color:#a855f7
+}
+<br>.mini
+{
+display:flex;gap:6px;flex-wrap:wrap;font-size:11.5px;font-weight:700
+}
+<br>.mini span
+{
+padding:4px 8px;border-radius:8px;background:#1c1d33;color:#9a9ab8
+}
+<br>.mini .p
+{
+background:#16a34a22;color:#4ade80
+}
+<br>.mini .l
+{
+background:#f59e0b22;color:#fbbf24
+}
+<br>.mini .a
+{
+background:#ef444422;color:#f87171
+}
+<br>.mini .e
+{
+background:#3b82f622;color:#60a5fa
+}
+<br>.bar
+{
+height:5px;border-radius:3px;background:#24263f;overflow:hidden;margin-top:10px
+}
+<br>.bar i
+{
+display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#a855f7,#ec4899)
+}
+</p>
+<p>.empty
+{
+text-align:center;color:#6b6b8a;font-size:13.5px;padding:26px 10px;line-height:1.6
+}
+<br>label.lbl
+{
+display:block;font-size:12.5px;font-weight:700;color:#8b8ba7;margin:0 0 7px
+}
+<br>.field
+{
+margin-bottom:12px
+}
+<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;</p>
+<p>&lt;!-- ================= LOCK ================= --&gt;<br>&lt;div id="lock" class="lock"&gt;<br>&nbsp;&lt;div class="lockBox"&gt;<br>&nbsp; &nbsp;&lt;h1&gt;🎤 Sổ Văn Nghệ&lt;/h1&gt;<br>&nbsp; &nbsp;&lt;p id="lockHint"&gt;Nhập mật khẩu để vào&lt;/p&gt;<br>&nbsp; &nbsp;&lt;input id="lockPass" type="password" placeholder="Mật khẩu" autocomplete="new-password"&gt;<br>&nbsp; &nbsp;&lt;input id="lockPass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" class="hidden"&gt;<br>&nbsp; &nbsp;&lt;button id="lockBtn"&gt;Vào&lt;/button&gt;<br>&nbsp; &nbsp;&lt;div id="lockErr" class="err"&gt;&lt;/div&gt;<br>&nbsp;&lt;/div&gt;<br>&lt;/div&gt;</p>
+<p>&lt;!-- ================= APP ================= --&gt;<br>&lt;div id="app" class="hidden"&gt;<br>&nbsp;&lt;header&gt;<br>&nbsp; &nbsp;&lt;div class="brand"&gt;🎤 Sổ Văn Nghệ&lt;/div&gt;<br>&nbsp; &nbsp;&lt;button id="btnLock" class="ghost"&gt;🔒 Khoá&lt;/button&gt;<br>&nbsp;&lt;/header&gt;<br>&nbsp;&lt;nav class="tabs"&gt;<br>&nbsp; &nbsp;&lt;button data-tab="members" class="on"&gt;Thành viên&lt;/button&gt;<br>&nbsp; &nbsp;&lt;button data-tab="sessions"&gt;Buổi tập&lt;/button&gt;<br>&nbsp; &nbsp;&lt;button data-tab="stats"&gt;Thống kê&lt;/button&gt;<br>&nbsp; &nbsp;&lt;button data-tab="settings"&gt;Cài đặt&lt;/button&gt;<br>&nbsp;&lt;/nav&gt;<br>&nbsp;&lt;main id="main"&gt;&lt;/main&gt;<br>&lt;/div&gt;</p>
+<p>&lt;script&gt;<br>/* ================= STORAGE ================= */<br>const KEY = 'so_van_nghe_v1';<br>let state = 
+{
+ passHash:null, members:[], sessions:[] 
+}
+;</p>
+<p>function load()
+{
+<br>&nbsp;try
+{
+<br>&nbsp; &nbsp;const raw = localStorage.getItem(KEY);<br>&nbsp; &nbsp;if(raw)
+{
+<br>&nbsp; &nbsp; &nbsp;const d = JSON.parse(raw);<br>&nbsp; &nbsp; &nbsp;if(d &amp;&amp; typeof d === 'object')
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp;state.passHash = d.passHash ?? null;<br>&nbsp; &nbsp; &nbsp; &nbsp;state.members &nbsp;= Array.isArray(d.members) &nbsp;? d.members &nbsp;: [];<br>&nbsp; &nbsp; &nbsp; &nbsp;state.sessions = Array.isArray(d.sessions) ? d.sessions : [];<br>&nbsp; &nbsp; &nbsp;
+}
+<br>&nbsp; &nbsp;
+}
+<br>&nbsp;
+}
+catch(e)
+{
+ console.warn('Load lỗi', e); 
+}
+<br>
+}
+<br>function save()
+{
+<br>&nbsp;try
+{
+ localStorage.setItem(KEY, JSON.stringify(state)); 
+}
+<br>&nbsp;catch(e)
+{
+ alert('Không lưu được dữ liệu: ' + e.message); 
+}
+<br>
+}
+<br>function hash(s)
+{
+<br>&nbsp;let h = 5381;<br>&nbsp;for(let i=0;i&lt;s.length;i++)
+{
+ h = ((h&lt;&lt;5)+h) + s.charCodeAt(i); h |= 0; 
+}
+<br>&nbsp;return String(h&gt;&gt;&gt;0);<br>
+}
+<br>const uid = () =&gt; Date.now().toString(36) + Math.random().toString(36).slice(2,7);<br>const esc = s =&gt; String(s??'').replace(/[&amp;&lt;&gt;"']/g, c =&gt; (
+{
+'&amp;':'&amp;','&lt;':'&lt;','&gt;':'&gt;','"':'"',"'":'''
+}
+[c]));<br>const $ = id =&gt; document.getElementById(id);</p>
+<p>function todayStr()
+{
+<br>&nbsp;const d = new Date();<br>&nbsp;return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');<br>
+}
+<br>function fmtDate(s)
+{
+<br>&nbsp;if(!s) return '';<br>&nbsp;const [y,m,d] = s.split('-');<br>&nbsp;return `$
+{
+d
+}
+/$
+{
+m
+}
+/$
+{
+y
+}
+`;<br>
+}
+</p>
+<p>/* ================= LOCK ================= */<br>load();</p>
+<p>function showLock()
+{
+<br>&nbsp;$('app').classList.add('hidden');<br>&nbsp;$('lock').classList.remove('hidden');<br>&nbsp;const firstTime = !state.passHash;<br>&nbsp;$('lockHint').textContent = firstTime ? 'Tạo mật khẩu lần đầu (chỉ mình bạn biết)' : 'Nhập mật khẩu để vào';<br>&nbsp;$('lockPass2').classList.toggle('hidden', !firstTime);<br>&nbsp;$('lockBtn').textContent = firstTime ? 'Tạo mật khẩu' : 'Vào';<br>&nbsp;$('lockPass').value = '';<br>&nbsp;$('lockPass2').value = '';<br>&nbsp;$('lockErr').textContent = '';<br>&nbsp;setTimeout(()=&gt;$('lockPass').focus(), 100);<br>
+}
+</p>
+<p>$('lockBtn').onclick = () =&gt; 
+{
+<br>&nbsp;const p1 = $('lockPass').value;<br>&nbsp;const p2 = $('lockPass2').value;<br>&nbsp;const err = $('lockErr');</p>
+<p>&nbsp;if(!p1)
+{
+ err.textContent = 'Nhập mật khẩu đã.'; return; 
+}
+</p>
+<p>&nbsp;if(!state.passHash)
+{
+<br>&nbsp; &nbsp;if(p1.length &lt; 4)
+{
+ err.textContent = 'Mật khẩu ít nhất 4 ký tự.'; return; 
+}
+<br>&nbsp; &nbsp;if(p1 !== p2)
+{
+ err.textContent = 'Nhập lại mật khẩu không khớp.'; return; 
+}
+<br>&nbsp; &nbsp;state.passHash = hash(p1);<br>&nbsp; &nbsp;save();<br>&nbsp; &nbsp;unlock();<br>&nbsp;
+}
+ else 
+{
+<br>&nbsp; &nbsp;if(hash(p1) !== state.passHash)
+{
+ err.textContent = 'Sai mật khẩu ❌'; return; 
+}
+<br>&nbsp; &nbsp;unlock();<br>&nbsp;
+}
+<br>
+}
+;<br>$('lockPass').onkeydown = e =&gt; 
+{
+ if(e.key === 'Enter') $('lockBtn').click(); 
+}
+;<br>$('lockPass2').onkeydown = e =&gt; 
+{
+ if(e.key === 'Enter') $('lockBtn').click(); 
+}
+;</p>
+<p>function unlock()
+{
+<br>&nbsp;$('lock').classList.add('hidden');<br>&nbsp;$('app').classList.remove('hidden');<br>&nbsp;openSessionId = null;<br>&nbsp;setTab('members');<br>
+}
+</p>
+<p>$('btnLock').onclick = () =&gt; 
+{
+ showLock(); 
+}
+;</p>
+<p>/* ================= NAV ================= */<br>let currentTab = 'members';<br>let openSessionId = null;</p>
+<p>document.querySelectorAll('.tabs button').forEach(b =&gt; 
+{
+<br>&nbsp;b.onclick = () =&gt; setTab(b.dataset.tab);<br>
+}
+);</p>
+<p>function setTab(t)
+{
+<br>&nbsp;currentTab = t;<br>&nbsp;openSessionId = null;<br>&nbsp;document.querySelectorAll('.tabs button').forEach(b =&gt; b.classList.toggle('on', b.dataset.tab === t));<br>&nbsp;render();<br>
+}
+</p>
+<p>function render()
+{
+<br>&nbsp;if(openSessionId) return renderAttendance();<br>&nbsp;if(currentTab === 'members') &nbsp;return renderMembers();<br>&nbsp;if(currentTab === 'sessions') return renderSessions();<br>&nbsp;if(currentTab === 'stats') &nbsp; &nbsp;return renderStats();<br>&nbsp;if(currentTab === 'settings') return renderSettings();<br>
+}
+</p>
+<p>/* ================= MEMBERS ================= */<br>function renderMembers()
+{
+<br>&nbsp;const m = $('main');<br>&nbsp;m.innerHTML = `<br>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="row"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;input id="newMember" type="text" placeholder="Tên thành viên mới..."&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;button class="btn" id="addMember"&gt;+ Thêm&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle"&gt;Danh sách · $
+{
+state.members.length
+}
+ người&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div id="memberList"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;$
+{
+state.members.length ? state.members.map((x,i)=&gt;`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="memberRow"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="idx"&gt;$
+{
+i+1
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="nm" data-rename="$
+{
+x.id
+}
+"&gt;$
+{
+esc(x.name)
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;button class="xbtn" data-del="$
+{
+x.id
+}
+"&gt;✕&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;`).join('') : `&lt;div class="empty"&gt;Chưa có ai.&lt;br&gt;Thêm thành viên ở trên đi 👆&lt;/div&gt;`
+}
+<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;div class="card" style="background:#141426;border-style:dashed"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="font-size:12.5px;color:#7c7c9c;line-height:1.7"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;💡 Bấm vào &lt;b&gt;tên&lt;/b&gt; để đổi tên · Bấm &lt;b&gt;✕&lt;/b&gt; để xoá<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;`;</p>
+<p>&nbsp;const inp = $('newMember');<br>&nbsp;const add = () =&gt; 
+{
+<br>&nbsp; &nbsp;const v = inp.value.trim();<br>&nbsp; &nbsp;if(!v) return;<br>&nbsp; &nbsp;state.members.push(
+{
+ id: uid(), name: v 
+}
+);<br>&nbsp; &nbsp;save(); renderMembers();<br>&nbsp; &nbsp;setTimeout(()=&gt;$('newMember').focus(), 30);<br>&nbsp;
+}
+;<br>&nbsp;$('addMember').onclick = add;<br>&nbsp;inp.onkeydown = e =&gt; 
+{
+ if(e.key === 'Enter') add(); 
+}
+;</p>
+<p>&nbsp;m.querySelectorAll('[data-del]').forEach(b =&gt; 
+{
+<br>&nbsp; &nbsp;b.onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;const id = b.dataset.del;<br>&nbsp; &nbsp; &nbsp;const mem = state.members.find(x=&gt;x.id===id);<br>&nbsp; &nbsp; &nbsp;if(!confirm(`Xoá "$
+{
+mem.name
+}
+" khỏi danh sách?`)) return;<br>&nbsp; &nbsp; &nbsp;state.members = state.members.filter(x=&gt;x.id!==id);<br>&nbsp; &nbsp; &nbsp;save(); renderMembers();<br>&nbsp; &nbsp;
+}
+;<br>&nbsp;
+}
+);<br>&nbsp;m.querySelectorAll('[data-rename]').forEach(el =&gt; 
+{
+<br>&nbsp; &nbsp;el.onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;const id = el.dataset.rename;<br>&nbsp; &nbsp; &nbsp;const mem = state.members.find(x=&gt;x.id===id);<br>&nbsp; &nbsp; &nbsp;const v = prompt('Đổi tên thành viên:', mem.name);<br>&nbsp; &nbsp; &nbsp;if(v === null) return;<br>&nbsp; &nbsp; &nbsp;const nv = v.trim();<br>&nbsp; &nbsp; &nbsp;if(!nv) return;<br>&nbsp; &nbsp; &nbsp;mem.name = nv; save(); renderMembers();<br>&nbsp; &nbsp;
+}
+;<br>&nbsp;
+}
+);<br>
+}
+</p>
+<p>/* ================= SESSIONS ================= */<br>function renderSessions()
+{
+<br>&nbsp;const m = $('main');<br>&nbsp;const sorted = [...state.sessions].sort((a,b)=&gt; (b.date||'').localeCompare(a.date||''));</p>
+<p>&nbsp;m.innerHTML = `<br>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle"&gt;Tạo buổi tập mới&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="field"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;label class="lbl"&gt;Tên buổi tập&lt;/label&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;input id="sTitle" type="text" placeholder="VD: Tập tiết mục 20/11"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="field"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;label class="lbl"&gt;Ngày&lt;/label&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;input id="sDate" type="date" value="$
+{
+todayStr()
+}
+"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;button class="btn" id="addSess" style="width:100%"&gt;+ Tạo buổi tập&lt;/button&gt;<br>&nbsp; &nbsp;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle"&gt;Các buổi tập · $
+{
+state.sessions.length
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;$
+{
+sorted.length ? sorted.map(s=&gt;
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp;const total = state.members.length;<br>&nbsp; &nbsp; &nbsp; &nbsp;let marked = 0;<br>&nbsp; &nbsp; &nbsp; &nbsp;state.members.forEach(mm =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;const r = s.records &amp;&amp; s.records[mm.id];<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if(r &amp;&amp; r.status) marked++;<br>&nbsp; &nbsp; &nbsp; &nbsp;
+}
+);<br>&nbsp; &nbsp; &nbsp; &nbsp;const done = total &gt; 0 &amp;&amp; marked &gt;= total;<br>&nbsp; &nbsp; &nbsp; &nbsp;return `&lt;div class="sessRow"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="info"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="t"&gt;$
+{
+esc(s.title)
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="d"&gt;$
+{
+fmtDate(s.date)
+}
+ · $
+{
+marked
+}
+/$
+{
+total
+}
+ đã điểm danh&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span class="pill $
+{
+done?'done':''
+}
+"&gt;$
+{
+done?'Xong':'Dở'
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;button class="btn gray" data-open="$
+{
+s.id
+}
+" style="padding:9px 12px;font-size:13px"&gt;Mở&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;button class="xbtn" data-delsess="$
+{
+s.id
+}
+"&gt;✕&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;`;<br>&nbsp; &nbsp; &nbsp;
+}
+).join('') : `&lt;div class="empty"&gt;Chưa có buổi tập nào.&lt;br&gt;Tạo buổi đầu tiên ở trên 👆&lt;/div&gt;`
+}
+<br>&nbsp; &nbsp;&lt;/div&gt;`;</p>
+<p>&nbsp;$('addSess').onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp;const title = $('sTitle').value.trim() || 'Buổi tập';<br>&nbsp; &nbsp;const date = $('sDate').value || todayStr();<br>&nbsp; &nbsp;const s = 
+{
+ id: uid(), title, date, records:
+{
+
+}
+ 
+}
+;<br>&nbsp; &nbsp;state.sessions.push(s);<br>&nbsp; &nbsp;save();<br>&nbsp; &nbsp;openSessionId = s.id;<br>&nbsp; &nbsp;render();<br>&nbsp;
+}
+;</p>
+<p>&nbsp;m.querySelectorAll('[data-open]').forEach(b =&gt; 
+{
+<br>&nbsp; &nbsp;b.onclick = () =&gt; 
+{
+ openSessionId = b.dataset.open; render(); 
+}
+;<br>&nbsp;
+}
+);<br>&nbsp;m.querySelectorAll('[data-delsess]').forEach(b =&gt; 
+{
+<br>&nbsp; &nbsp;b.onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;if(!confirm('Xoá buổi tập này? (Toàn bộ điểm danh của buổi đó sẽ mất)')) return;<br>&nbsp; &nbsp; &nbsp;state.sessions = state.sessions.filter(x=&gt;x.id !== b.dataset.delsess);<br>&nbsp; &nbsp; &nbsp;save(); renderSessions();<br>&nbsp; &nbsp;
+}
+;<br>&nbsp;
+}
+);<br>
+}
+</p>
+<p>/* ================= ATTENDANCE ================= */<br>function getRec(session, mid)
+{
+<br>&nbsp;if(!session.records) session.records = 
+{
+
+}
+;<br>&nbsp;if(!session.records[mid]) session.records[mid] = 
+{
+ status:null, attitude:0, note:'' 
+}
+;<br>&nbsp;return session.records[mid];<br>
+}
+</p>
+<p>const STATUSES = [<br>&nbsp;
+{
+ k:'present', label:'Có mặt' 
+}
+,<br>&nbsp;
+{
+ k:'late', &nbsp; &nbsp;label:'Trễ' 
+}
+,<br>&nbsp;
+{
+ k:'absent', &nbsp;label:'Vắng' 
+}
+,<br>&nbsp;
+{
+ k:'excused', label:'Có phép' 
+}
+<br>];</p>
+<p>function renderAttendance()
+{
+<br>&nbsp;const s = state.sessions.find(x=&gt;x.id === openSessionId);<br>&nbsp;if(!s)
+{
+ openSessionId = null; return render(); 
+}
+</p>
+<p>&nbsp;const m = $('main');<br>&nbsp;let marked = 0;<br>&nbsp;state.members.forEach(mm =&gt; 
+{
+<br>&nbsp; &nbsp;const r = s.records &amp;&amp; s.records[mm.id];<br>&nbsp; &nbsp;if(r &amp;&amp; r.status) marked++;<br>&nbsp;
+}
+);</p>
+<p>&nbsp;m.innerHTML = `<br>&nbsp; &nbsp;&lt;button class="backBtn" id="backBtn"&gt;← Quay lại&lt;/button&gt;<br>&nbsp; &nbsp;&lt;div class="attHead"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;h2&gt;$
+{
+esc(s.title)
+}
+&lt;/h2&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="sub"&gt;$
+{
+fmtDate(s.date)
+}
+ · Đã điểm danh $
+{
+marked
+}
+/$
+{
+state.members.length
+}
+&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;$
+{
+state.members.length ? state.members.map(mm =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;const r = getRec(s, mm.id);<br>&nbsp; &nbsp; &nbsp;return `&lt;div class="attRow" data-mid="$
+{
+mm.id
+}
+"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="attName"&gt;$
+{
+esc(mm.name)
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="attBtns"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$
+{
+STATUSES.map(st=&gt;`&lt;button class="chip $
+{
+st.k
+}
+ $
+{
+r.status===st.k?'active':''
+}
+" data-status="$
+{
+st.k
+}
+"&gt;$
+{
+st.label
+}
+&lt;/button&gt;`).join('')
+}
+<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="attBottom"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="stars"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$
+{
+[1,2,3,4,5].map(v=&gt;`&lt;span class="star $
+{
+r.attitude&gt;=v?'filled':''
+}
+" data-v="$
+{
+v
+}
+"&gt;★&lt;/span&gt;`).join('')
+}
+<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;input class="noteInput" type="text" placeholder="Ghi chú ý thức..." value="$
+{
+esc(r.note)
+}
+"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;`;<br>&nbsp; &nbsp;
+}
+).join('') : `&lt;div class="card"&gt;&lt;div class="empty"&gt;Chưa có thành viên nào.&lt;br&gt;Qua tab &lt;b&gt;Thành viên&lt;/b&gt; thêm trước đã.&lt;/div&gt;&lt;/div&gt;`
+}
+<br>&nbsp;`;</p>
+<p>&nbsp;$('backBtn').onclick = () =&gt; 
+{
+ openSessionId = null; save(); render(); 
+}
+;</p>
+<p>&nbsp;m.querySelectorAll('.attRow').forEach(row =&gt; 
+{
+<br>&nbsp; &nbsp;const mid = row.dataset.mid;<br>&nbsp; &nbsp;const rec = getRec(s, mid);</p>
+<p>&nbsp; &nbsp;row.querySelectorAll('.chip').forEach(chip =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;chip.onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp;const k = chip.dataset.status;<br>&nbsp; &nbsp; &nbsp; &nbsp;rec.status = (rec.status === k) ? null : k;<br>&nbsp; &nbsp; &nbsp; &nbsp;row.querySelectorAll('.chip').forEach(c =&gt; c.classList.toggle('active', c.dataset.status === rec.status));<br>&nbsp; &nbsp; &nbsp; &nbsp;save();<br>&nbsp; &nbsp; &nbsp; &nbsp;let cnt = 0;<br>&nbsp; &nbsp; &nbsp; &nbsp;state.members.forEach(x =&gt; 
+{
+ const r = s.records &amp;&amp; s.records[x.id]; if(r &amp;&amp; r.status) cnt++; 
+}
+);<br>&nbsp; &nbsp; &nbsp; &nbsp;const sub = document.querySelector('.attHead .sub');<br>&nbsp; &nbsp; &nbsp; &nbsp;if(sub) sub.textContent = `$
+{
+fmtDate(s.date)
+}
+ · Đã điểm danh $
+{
+cnt
+}
+/$
+{
+state.members.length
+}
+`;<br>&nbsp; &nbsp; &nbsp;
+}
+;<br>&nbsp; &nbsp;
+}
+);</p>
+<p>&nbsp; &nbsp;const stars = row.querySelectorAll('.star');<br>&nbsp; &nbsp;stars.forEach(st =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;st.onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp;const v = +st.dataset.v;<br>&nbsp; &nbsp; &nbsp; &nbsp;rec.attitude = (rec.attitude === v) ? 0 : v;<br>&nbsp; &nbsp; &nbsp; &nbsp;stars.forEach(x =&gt; x.classList.toggle('filled', +x.dataset.v &lt;= rec.attitude));<br>&nbsp; &nbsp; &nbsp; &nbsp;save();<br>&nbsp; &nbsp; &nbsp;
+}
+;<br>&nbsp; &nbsp;
+}
+);</p>
+<p>&nbsp; &nbsp;const note = row.querySelector('.noteInput');<br>&nbsp; &nbsp;note.oninput = () =&gt; 
+{
+ rec.note = note.value; save(); 
+}
+;<br>&nbsp;
+}
+);<br>
+}
+</p>
+<p>/* ================= STATS ================= */<br>function renderStats()
+{
+<br>&nbsp;const m = $('main');<br>&nbsp;const totalSess = state.sessions.length;</p>
+<p>&nbsp;if(!state.members.length)
+{
+<br>&nbsp; &nbsp;m.innerHTML = `&lt;div class="card"&gt;&lt;div class="empty"&gt;Chưa có dữ liệu.&lt;br&gt;Thêm thành viên và tạo buổi tập trước đã.&lt;/div&gt;&lt;/div&gt;`;<br>&nbsp; &nbsp;return;<br>&nbsp;
+}
+</p>
+<p>&nbsp;const rows = state.members.map(mm =&gt; 
+{
+<br>&nbsp; &nbsp;let p=0,l=0,a=0,e=0,attSum=0,attN=0;<br>&nbsp; &nbsp;state.sessions.forEach(s =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;const r = s.records &amp;&amp; s.records[mm.id];<br>&nbsp; &nbsp; &nbsp;if(!r) return;<br>&nbsp; &nbsp; &nbsp;if(r.status === 'present') p++;<br>&nbsp; &nbsp; &nbsp;else if(r.status === 'late') l++;<br>&nbsp; &nbsp; &nbsp;else if(r.status === 'absent') a++;<br>&nbsp; &nbsp; &nbsp;else if(r.status === 'excused') e++;<br>&nbsp; &nbsp; &nbsp;if(r.attitude &gt; 0)
+{
+ attSum += r.attitude; attN++; 
+}
+<br>&nbsp; &nbsp;
+}
+);<br>&nbsp; &nbsp;const marked = p+l+a+e;<br>&nbsp; &nbsp;const rate = marked ? Math.round((p+l)/marked*100) : null;<br>&nbsp; &nbsp;const avg = attN ? (attSum/attN) : null;<br>&nbsp; &nbsp;return 
+{
+ mm, p, l, a, e, marked, rate, avg 
+}
+;<br>&nbsp;
+}
+);</p>
+<p>&nbsp;rows.sort((x,y) =&gt; 
+{
+<br>&nbsp; &nbsp;const rx = x.rate ?? -1, ry = y.rate ?? -1;<br>&nbsp; &nbsp;if(ry !== rx) return ry - rx;<br>&nbsp; &nbsp;return (y.avg ?? -1) - (x.avg ?? -1);<br>&nbsp;
+}
+);</p>
+<p>&nbsp;m.innerHTML = `<br>&nbsp; &nbsp;&lt;div class="card" style="display:flex;gap:14px;text-align:center"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="flex:1"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div style="font-size:22px;font-weight:900;color:#a855f7"&gt;$
+{
+state.members.length
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div style="font-size:11.5px;color:#8b8ba7;font-weight:700"&gt;THÀNH VIÊN&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="width:1px;background:#24263f"&gt;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="flex:1"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div style="font-size:22px;font-weight:900;color:#ec4899"&gt;$
+{
+totalSess
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div style="font-size:11.5px;color:#8b8ba7;font-weight:700"&gt;BUỔI TẬP&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp;$
+{
+rows.map((r,i) =&gt; `<br>&nbsp; &nbsp; &nbsp;&lt;div class="statCard"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="statTop"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="rank $
+{
+i===0?'g1':i===1?'g2':i===2?'g3':''
+}
+"&gt;$
+{
+i+1
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="nm"&gt;$
+{
+esc(r.mm.name)
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="rate"&gt;$
+{
+r.rate === null ? '—' : r.rate + '%'
+}
+&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="mini"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span class="p"&gt;✓ $
+{
+r.p
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span class="l"&gt;⏰ $
+{
+r.l
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span class="a"&gt;✕ $
+{
+r.a
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span class="e"&gt;📝 $
+{
+r.e
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span&gt;Ý thức: $
+{
+r.avg === null ? '—' : r.avg.toFixed(1) + '★'
+}
+&lt;/span&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;div class="bar"&gt;&lt;i style="width:$
+{
+r.rate ?? 0
+}
+%"&gt;&lt;/i&gt;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;`).join('')
+}
+</p>
+<p>&nbsp; &nbsp;&lt;div class="card" style="background:#141426;border-style:dashed"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="font-size:12px;color:#7c7c9c;line-height:1.7"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;Tỉ lệ = (Có mặt + Trễ) / số buổi đã điểm danh.&lt;br&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;Ý thức = điểm sao trung bình bạn chấm (1–5).<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp;&lt;/div&gt;`;<br>
+}
+</p>
+<p>/* ================= SETTINGS ================= */<br>function renderSettings()
+{
+<br>&nbsp;const m = $('main');<br>&nbsp;m.innerHTML = `<br>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle"&gt;Đổi mật khẩu&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="field"&gt;&lt;label class="lbl"&gt;Mật khẩu hiện tại&lt;/label&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;input id="oldPass" type="password" placeholder="••••••"&gt;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="field"&gt;&lt;label class="lbl"&gt;Mật khẩu mới&lt;/label&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;&lt;input id="newPass" type="password" placeholder="Ít nhất 4 ký tự"&gt;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;button class="btn" id="changePass" style="width:100%"&gt;Cập nhật mật khẩu&lt;/button&gt;<br>&nbsp; &nbsp;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp;&lt;div class="card"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle"&gt;Sao lưu dữ liệu&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div style="font-size:12.5px;color:#8b8ba7;line-height:1.7;margin-bottom:12px"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;Dữ liệu chỉ nằm trong trình duyệt này. Nếu xoá lịch sử trình duyệt là mất sạch —<br>&nbsp; &nbsp; &nbsp; &nbsp;nên xuất file backup thỉnh thoảng.<br>&nbsp; &nbsp; &nbsp;&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;button class="btn gray" id="exportBtn" style="width:100%;margin-bottom:8px"&gt;⬇️ Xuất file JSON&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp;&lt;button class="btn gray" id="importBtn" style="width:100%"&gt;⬆️ Nhập từ file JSON&lt;/button&gt;<br>&nbsp; &nbsp; &nbsp;&lt;input id="importFile" type="file" accept=".json,application/json" style="display:none"&gt;<br>&nbsp; &nbsp;&lt;/div&gt;</p>
+<p>&nbsp; &nbsp;&lt;div class="card" style="border-color:#4a1f2a"&gt;<br>&nbsp; &nbsp; &nbsp;&lt;div class="cardTitle" style="color:#f87171"&gt;Vùng nguy hiểm&lt;/div&gt;<br>&nbsp; &nbsp; &nbsp;&lt;button class="btn gray" id="wipeBtn" style="width:100%;background:#2a1c26;color:#f87171"&gt;<br>&nbsp; &nbsp; &nbsp; &nbsp;🗑 Xoá toàn bộ dữ liệu<br>&nbsp; &nbsp; &nbsp;&lt;/button&gt;<br>&nbsp; &nbsp;&lt;/div&gt;`;</p>
+<p>&nbsp;$('changePass').onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp;const o = $('oldPass').value, n = $('newPass').value;<br>&nbsp; &nbsp;if(hash(o) !== state.passHash)
+{
+ alert('Mật khẩu hiện tại sai ❌'); return; 
+}
+<br>&nbsp; &nbsp;if(n.length &lt; 4)
+{
+ alert('Mật khẩu mới phải từ 4 ký tự'); return; 
+}
+<br>&nbsp; &nbsp;state.passHash = hash(n); save();<br>&nbsp; &nbsp;$('oldPass').value = ''; $('newPass').value = '';<br>&nbsp; &nbsp;alert('Đã đổi mật khẩu ✅');<br>&nbsp;
+}
+;</p>
+<p>&nbsp;$('exportBtn').onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp;const blob = new Blob([JSON.stringify(state, null, 2)], 
+{
+ type:'application/json' 
+}
+);<br>&nbsp; &nbsp;const url = URL.createObjectURL(blob);<br>&nbsp; &nbsp;const a = document.createElement('a');<br>&nbsp; &nbsp;a.href = url;<br>&nbsp; &nbsp;a.download = 'so-van-nghe-' + todayStr() + '.json';<br>&nbsp; &nbsp;a.click();<br>&nbsp; &nbsp;URL.revokeObjectURL(url);<br>&nbsp;
+}
+;</p>
+<p>&nbsp;$('importBtn').onclick = () =&gt; $('importFile').click();<br>&nbsp;$('importFile').onchange = e =&gt; 
+{
+<br>&nbsp; &nbsp;const f = e.target.files[0];<br>&nbsp; &nbsp;if(!f) return;<br>&nbsp; &nbsp;const reader = new FileReader();<br>&nbsp; &nbsp;reader.onload = () =&gt; 
+{
+<br>&nbsp; &nbsp; &nbsp;try
+{
+<br>&nbsp; &nbsp; &nbsp; &nbsp;const d = JSON.parse(reader.result);<br>&nbsp; &nbsp; &nbsp; &nbsp;if(!d || !Array.isArray(d.members) || !Array.isArray(d.sessions)) throw new Error('File không đúng định dạng');<br>&nbsp; &nbsp; &nbsp; &nbsp;if(!confirm('Nhập dữ liệu sẽ GHI ĐÈ toàn bộ dữ liệu hiện tại. Tiếp tục?')) return;<br>&nbsp; &nbsp; &nbsp; &nbsp;state.members = d.members;<br>&nbsp; &nbsp; &nbsp; &nbsp;state.sessions = d.sessions;<br>&nbsp; &nbsp; &nbsp; &nbsp;if(d.passHash) state.passHash = d.passHash;<br>&nbsp; &nbsp; &nbsp; &nbsp;save();<br>&nbsp; &nbsp; &nbsp; &nbsp;alert('Nhập xong ✅');<br>&nbsp; &nbsp; &nbsp; &nbsp;setTab('members');<br>&nbsp; &nbsp; &nbsp;
+}
+catch(err)
+{
+ alert('Lỗi: ' + err.message); 
+}
+<br>&nbsp; &nbsp;
+}
+;<br>&nbsp; &nbsp;reader.readAsText(f);<br>&nbsp; &nbsp;e.target.value = '';<br>&nbsp;
+}
+;</p>
+<p>&nbsp;$('wipeBtn').onclick = () =&gt; 
+{
+<br>&nbsp; &nbsp;if(!confirm('XOÁ SẠCH mọi thành viên và buổi tập? Không khôi phục được.')) return;<br>&nbsp; &nbsp;if(!confirm('Chắc chắn chứ? Lần cuối đó nha.')) return;<br>&nbsp; &nbsp;const ph = state.passHash;<br>&nbsp; &nbsp;state = 
+{
+ passHash: ph, members: [], sessions: [] 
+}
+;<br>&nbsp; &nbsp;save();<br>&nbsp; &nbsp;setTab('members');<br>&nbsp;
+}
+;<br>
+}
+</p>
+<p>/* ================= START ================= */<br>showLock();<br>&lt;/script&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</p>
